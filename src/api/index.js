@@ -11,9 +11,18 @@ export const fetchData = async () => {
             recovered: data.recovered,
             deaths: data.deaths,
             lastUpdate: data.lastUpdate,
+            og: data.og,
         }
 
         return response;
+    } catch (error) {
+
+    }
+}
+
+export const fetchDailyData = async () => {
+    try {
+
     } catch (error) {
 
     }
