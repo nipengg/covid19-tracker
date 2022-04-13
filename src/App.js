@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { fetchData } from "./api";
 import { Cards, Chart, CountryPicker } from "./components";
@@ -16,14 +16,20 @@ class App extends React.Component {
     this.setState({ data: fetchedData });
   }
 
+  handleCountryChange = async (country) => {
+    const fetchedData = await fetchData(country);
+
+    this.setState({ data: fetchedData, country: country });
+  }
+
   render() {
     return (
       <div className={styles.container}>
         <Cards
           data={this.state.data}
         />
-        <CountryPicker />
-        <Chart />
+        <CountryPicker handleCountryChange={this.handleCountryChange} />
+        <Chart data={this.state.data} country={this.state.country} />
       </div>
     );
   }
